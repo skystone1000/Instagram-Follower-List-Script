@@ -42,7 +42,7 @@ class InstagramBot():
         username = self.browser.find_element_by_name('username')
         username.send_keys('adityaspmahajan@gmail.com')
         password = self.browser.find_element_by_name('password')
-        password.send_keys('ignatia200')
+        password.send_keys('password')
         sleep(2)
         password.send_keys(Keys.ENTER)
         print("SignIn Done")
