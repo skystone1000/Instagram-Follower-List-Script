@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "main.py", line 9, in <module>
+    myMeth.followLimited("peopleToFollow")
+  File "/mnt/E4687B61687B3182/CSE/Insta script/Unfollow/myMeth.py", line 138, in followLimited
+    time.sleep(timeToSleep)
+KeyboardInterrupt

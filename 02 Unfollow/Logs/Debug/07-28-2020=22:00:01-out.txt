@@ -1,0 +1,227 @@
+Current Hour = 22
+Coding User Selected
+User Initialized
+
+Session Details :
+url : http://127.0.0.1:38207
+session_id : e993b6fb452a391106f6aaa8753ac10a
+An exception of type ProgrammingError occurred. Arguments:
+(1050, "1050 (42S01): Table 'Logs' already exists", '42S01')
+Table created : Logs
+Loop Count = 0
+leo.br_nd
+https://www.instagram.com/leo.br_nd/
+
+240
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 0
+================================================
+Loop Count = 1
+vishal.khedekar.148
+https://www.instagram.com/vishal.khedekar.148/
+
+288
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 0
+================================================
+Loop Count = 2
+kaantheanimator
+https://www.instagram.com/kaantheanimator/
+
+1152
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 1
+================================================
+Loop Count = 3
+theravencry
+https://www.instagram.com/theravencry/
+
+353
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 2
+================================================
+Loop Count = 4
+cybersalute
+https://www.instagram.com/cybersalute/
+
+806
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 3
+================================================
+Loop Count = 5
+sudhanshu__soni
+https://www.instagram.com/sudhanshu__soni/
+
+212
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 3
+================================================
+Loop Count = 6
+krdecker
+https://www.instagram.com/krdecker/
+
+121
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 3
+================================================
+Loop Count = 7
+richardheralds
+https://www.instagram.com/richardheralds/
+
+401
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 3
+================================================
+Loop Count = 8
+mahi_d_crazy_chori_
+https://www.instagram.com/mahi_d_crazy_chori_/
+
+336
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 3
+================================================
+Loop Count = 9
+lucianodevjourney
+https://www.instagram.com/lucianodevjourney/
+
+5196
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 4
+================================================
+Loop Count = 10
+_dr_gdeshmukh_
+https://www.instagram.com/_dr_gdeshmukh_/
+
+329
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 5
+================================================
+Loop Count = 11
+vaibhavs_07
+https://www.instagram.com/vaibhavs_07/
+
+408
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 5
+================================================
+Loop Count = 12
+arcadewolfstudio
+https://www.instagram.com/arcadewolfstudio/
+
+112
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 6
+================================================
+Loop Count = 13
+prajakta0407
+https://www.instagram.com/prajakta0407/
+
+381
+
+Follow button changed
+An exception of type NoSuchElementException occurred. Arguments:
+('no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/section/main/div/header/section/div[1]/button"}\n  (Session info: headless chrome=83.0.4103.97)', None, None)
+Explicit reason
+People Followed now : 6
+================================================
+Loop Count = 14
+Name element not found
+UserName element not found || User does not exist
+User does not exist || Username Changed
+People Followed now : 6
+================================================
+Loop Count = 15
+gamedevcbaarg
+https://www.instagram.com/gamedevcbaarg/
+
+573
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 7
+================================================
+Loop Count = 16
+chill_nplay
+https://www.instagram.com/chill_nplay/
+
+8251
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 8
+================================================
+Loop Count = 17
+this_.is._daniel
+https://www.instagram.com/this_.is._daniel/
+
+143
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 9
+================================================
+Loop Count = 18
+Name element not found
+UserName element not found || User does not exist
+User does not exist || Username Changed
+People Followed now : 9
+================================================
+Loop Count = 19
+rwhalgames
+https://www.instagram.com/rwhalgames/
+
+173
+Follow
+affected rows = 1
+User added to followed people
+People Followed now : 10
+================================================
+Loop Count = 20
+loverslane_game
+https://www.instagram.com/loverslane_game/
+
+258
+Follow
+affected rows = 1
+User added to followed people
+Completed Following 25 people
