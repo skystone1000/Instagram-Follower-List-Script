@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "/mnt/E4687B61687B3182/CSE/Insta script/instaEnv/bin/python3",
+    "python.pythonPath": "instaEnv/bin",
     "cmake.configureOnOpen": true
 }

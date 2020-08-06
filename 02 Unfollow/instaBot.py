@@ -1,4 +1,5 @@
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 import time
 import pickle
@@ -25,7 +26,7 @@ emoji_pattern = re.compile("["
 
 
 class InstagramBot():
-    def __init__(self, chromePath, url = "0", session_id = "0" ):
+    def __init__(self, url = "0", session_id = "0" ):
         if (url == "0"):
             self.browserProfile = webdriver.ChromeOptions()
             self.browserProfile.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
@@ -36,7 +37,9 @@ class InstagramBot():
             elif (user == "Photography"):                
                 self.browserProfile.add_argument("user-data-dir=//home//skystone//.config//google-chrome//photography")
 
-            self.browser = webdriver.Chrome(chromePath, options=self.browserProfile)
+            # self.browser = webdriver.Chrome(chromePath, options=self.browserProfile)
+            self.browser = webdriver.Chrome(ChromeDriverManager().install(), options=self.browserProfile)
+
         else:
             self.browserProfile = webdriver.ChromeOptions()
             self.browserProfile.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})

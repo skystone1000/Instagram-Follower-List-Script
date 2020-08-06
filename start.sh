@@ -5,10 +5,10 @@
 # echo "===== Server Started ====="
 
 echo "===== Initiating Environment ====="
-source "/mnt/E4687B61687B3182/CSE/Insta script/instaEnv/bin/activate"
+source "/opt/lampp/htdocs/github/Instagram-Follower-List-Script/instaEnv/bin/activate"
 echo "===== Environment Initialised ====="
 
-cd /mnt/E4687B61687B3182/CSE/Insta\ script/Unfollow
+cd /opt/lampp/htdocs/github/Instagram-Follower-List-Script/02\ Unfollow
 echo "===== Arrived at proper directory ====="
 
 now=$(date +"%m-%d-%Y=%T")

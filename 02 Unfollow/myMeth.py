@@ -1,12 +1,11 @@
 import instaBot 
-import config
 import connection
 import time
 import os
 from random import randint
 
 # INITIALIZATION ---------------------------
-bot = instaBot.InstagramBot(config.chromePath)
+bot = instaBot.InstagramBot()
 bot.initializeUser('email','password')
 bot.extractSession()
 connection.createLogTable('Logs')
@@ -173,7 +172,7 @@ def followLimited(tableName):
         if(val == 4):
             print("Explicit reason")
         
-        if(followedCount > 10):
+        if(followedCount > 25):
             print("Completed Following 25 people")
             break
 
@@ -253,7 +252,7 @@ def unfollowEnemiesLimited():
             connection.delUser(tableName,userUrl)
             print("UserName Does not exist")
 
-        if(unfollowedCount > 4):
+        if(unfollowedCount > 25):
             print("Completed UnFollowing 25 people")
             break
 

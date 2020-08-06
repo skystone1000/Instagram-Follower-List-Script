@@ -4,10 +4,10 @@ import myMeth
 
 # _still.hungry_
 # skystone1000
-myMeth.findMyEnemies('_still.hungry_')
+# myMeth.findMyEnemies('_still.hungry_')
 
 # myMeth.unfollowEnemiesLimited()
-# myMeth.followLimited("peopleToFollow")
+myMeth.followLimited("peopleToFollow")
 
 
 
