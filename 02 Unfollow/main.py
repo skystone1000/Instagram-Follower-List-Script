@@ -1,29 +1,40 @@
-from config import decideUser
+from config import decideUser,getUser
 decideUser()
-import myMeth
+import functions
+
+
+currUser = getUser()
+
+if(currUser == "Coding"):
+    functions.unfollowEnemiesLimited()
+elif(currUser == "Photography"):
+    print("follow")
+    functions.followLimited("peopleToFollow")
+
+
+functions.onComplete()
+
 
 # _still.hungry_
 # skystone1000
-# myMeth.findMyEnemies('_still.hungry_')
+# functions.findMyEnemies('skystone1000')
 
-# myMeth.unfollowEnemiesLimited()
-myMeth.followLimited("peopleToFollow")
+# functions.unfollowEnemiesLimited()
+# functions.followLimited("peopleToFollow")
+
+# functions.getUserFollowers('https://www.instagram.com/teamsankalp/')
+
+# functions.deleteEarlierFollowed("peopleToFollow")
+# functions.getGroups("https://www.instagram.com/sggs.memes/")
+
+# functions.sggs()
+# functions.test()
+
+# functions.fileToDb("unfollowlist.txt","myEnemies")
+# functions.fileToDb("sggs.txt","sggsmemes")
 
 
-
-# myMeth.getUserFollowers('https://www.instagram.com/ludum_elit/')
-# myMeth.deleteEarlierFollowed("peopleToFollow")
-# myMeth.getGroups("https://www.instagram.com/sggs.memes/")
-
-# myMeth.sggs()
-# myMeth.test()
-
-# myMeth.fileToDb("unfollowlist.txt","myEnemies")
-# myMeth.fileToDb("sggs.txt","sggsmemes")
-
-
-myMeth.onComplete()
-
+######################################################################################3
 
 # Coding
 # https://www.instagram.com/coding.maker/
@@ -37,3 +48,7 @@ myMeth.onComplete()
 # Photography
 # https://www.instagram.com/a_mateen_as/
 # https://www.instagram.com/sggs.memes/
+
+# REF (Running slenium in cron)
+# https://stackoverflow.com/questions/20575751/execute-python-selenium-script-in-crontab
+# https://stackoverflow.com/questions/23908319/run-selenium-with-crontab-python

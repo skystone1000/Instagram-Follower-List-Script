@@ -1,14 +1,15 @@
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.keys import Keys
-import time
 import pickle
-from time import sleep, strftime
-from random import randint
 import re
+import time
+from random import randint
+from time import sleep, strftime
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
 import connection
-import myMeth
 from config import getUser
+from webdriver_manager.chrome import ChromeDriverManager
 
 """
     Ref
@@ -89,7 +90,6 @@ class InstagramBot():
         ############## Get UserName
         try:
             userName = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/h2').text
-            # userName = myMeth.linkToUsername(link)
             print("UserName = {}".format(userName))
         except Exception as ex:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
@@ -307,5 +307,3 @@ class InstagramBot():
    
     def __exit__(self, exc_type, exc_value, traceback):
         self.closeBrowser()
-
-
