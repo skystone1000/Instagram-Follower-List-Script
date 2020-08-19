@@ -140,4 +140,7 @@ cython_debug/
 # My virual Env
 instaEnv
 chromedriver
+
+# Log files
 Logs/
+

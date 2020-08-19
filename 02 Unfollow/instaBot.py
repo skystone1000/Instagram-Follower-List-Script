@@ -40,6 +40,7 @@ class InstagramBot():
 
             # self.browser = webdriver.Chrome(chromePath, options=self.browserProfile)
             self.browser = webdriver.Chrome(ChromeDriverManager().install(), options=self.browserProfile)
+            self.browser.maximize_window()
 
         else:
             self.browserProfile = webdriver.ChromeOptions()
