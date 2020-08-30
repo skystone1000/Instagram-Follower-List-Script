@@ -6,7 +6,7 @@ import functions
 currUser = getUser()
 
 if(currUser == "Coding"):
-    functions.unfollowEnemiesLimited()
+    functions.followLimited("peopleToFollow")
 elif(currUser == "Photography"):
     print("follow")
     functions.followLimited("peopleToFollow")

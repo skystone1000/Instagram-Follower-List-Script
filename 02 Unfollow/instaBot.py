@@ -307,4 +307,4 @@ class InstagramBot():
         print("session_id : {}".format(session_id))
    
     def __exit__(self, exc_type, exc_value, traceback):
-        self.closeBrowser()
+        self.quit()
