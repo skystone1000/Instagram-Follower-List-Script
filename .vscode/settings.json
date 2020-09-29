@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "instaEnv/bin",
+    "cmake.configureOnOpen": true
+}
