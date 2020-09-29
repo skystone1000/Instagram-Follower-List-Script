@@ -25,6 +25,8 @@ emoji_pattern = re.compile("["
         u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                            "]+", flags=re.UNICODE)
 
+NAME_XPATH = '/html/body/div[1]/section/main/div/header/section/div[2]/h1'
+
 
 class InstagramBot():
     def __init__(self, url = "0", session_id = "0" ):
@@ -152,6 +154,7 @@ class InstagramBot():
             if(followButton.text == ''):
                 print("Follow button changed")
                 followButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/button')
+                                                              #    /html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div/button
                 print(followButton.text)
 
             if (followButton.text != 'Message' and followButton.text != 'Requested' and followButton.text != 'Follow Back' ):
@@ -183,34 +186,29 @@ class InstagramBot():
     def unfollowWithUsername(self, username):
         # self.browser.get('https://www.instagram.com/' + username + '/')
         self.browser.get(username)        
-        
-        ############## Get Name
-        ## TO DO  -- when Name field is blank || Name emoji ##
+
         try:
-            name = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[2]/h1').text
-            name = emoji_pattern.sub(r'', name)
-            # print(name)
+            followButton = self.browser.find_element_by_css_selector('button')
+            # Required for private profiles
+            print(followButton.text)
+            if(followButton.text == ''):
+                print("Follow button changed")
+                followButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/button')
+                                                                #  /html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div/button
+                print(followButton.text)
         except Exception as ex:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
             # print(message)
-            print("Name element not found")
+            print("User not found")
             return 2
-
-        followButton = self.browser.find_element_by_css_selector('button')
-        # Required for private profiles
-        print(followButton.text)
-        if(followButton.text == ''):
-            print("Follow button changed")
-            followButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/button')
-            print(followButton.text)
 
         if (followButton.text == 'Message' or followButton.text == 'Following'):
             try:
-                unfollowButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[2]/div/span/span[1]/button')
+                unfollowButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/div/span/span[1]/button/div/span')
                 unfollowButton.click()
             except:
-                unfollowButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/button/div/span')
+                unfollowButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/button/div/span')
                 print("Unfollow button Chnaged")
                 unfollowButton.click()
             time.sleep(2)
@@ -242,7 +240,7 @@ class InstagramBot():
         print("Done sleeping")
         actionChain = webdriver.ActionChains(self.browser)
         followerLoop = 0
-        while (numberOfFollowersInList < totalFollowers-10):
+        while (numberOfFollowersInList < totalFollowers-2):
             followerLoop = followerLoop + 1
             actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowersInList = len(followersList.find_elements_by_css_selector('li'))
@@ -251,6 +249,23 @@ class InstagramBot():
                 time.sleep(3)
                 print(numberOfFollowersInList,end=" : ")
         
+        followers = []
+        print("Creating Follower[] List")
+        for user in followersList.find_elements_by_css_selector('li'):
+            userLink = user.find_element_by_css_selector('a').get_attribute('href')
+            followers.append(userLink)
+            if (len(followers) == totalFollowers):
+                break
+        return followers
+
+    def getUserFollowersError(self, username):
+        totalFollowers = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/ul/li[2]/a/span').text
+        totalFollowers = int(totalFollowers.replace(',',''))
+        print("Total Followers user has : {}".format(totalFollowers))
+        
+        time.sleep(7)
+        followersList = self.browser.find_element_by_css_selector('div[role=\'dialog\'] ul')
+    
         followers = []
         print("Creating Follower[] List")
         for user in followersList.find_elements_by_css_selector('li'):

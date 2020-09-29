@@ -252,7 +252,7 @@ def unfollowEnemiesLimited():
             connection.delUser(tableName,userUrl)
             print("UserName Does not exist")
 
-        if(unfollowedCount > 25):
+        if(unfollowedCount > 30):
             print("Completed UnFollowing 25 people")
             break
 
