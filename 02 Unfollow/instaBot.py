@@ -148,14 +148,20 @@ class InstagramBot():
         
         ############## Pressing Follow Button
         try:
-            followButton = self.browser.find_element_by_css_selector('button')
-            # Required for private profiles
-            print(followButton.text)
-            if(followButton.text == ''):
-                print("Follow button changed")
-                followButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/button')
-                                                              #    /html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div/button
+            try:
+                # For Private Profiles
+                followButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div/button')
                 print(followButton.text)
+            except Exception as ex:
+                try:
+                # For Public Profiles    
+                    followButton = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[1]/div/div/div/span/span[1]/button')
+                    print("Public Profile Follow button changed")
+                except Exception as ex1:
+                    template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                    message = template.format(type(ex1).__name__, ex.args)
+                    print(message)
+                    return 4
 
             if (followButton.text != 'Message' and followButton.text != 'Requested' and followButton.text != 'Follow Back' ):
                 followButton.click()
@@ -180,7 +186,7 @@ class InstagramBot():
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
             print(message)
-            return 4
+            return 5
 
     #### Check complete (Used in unfollow enemies limited)
     def unfollowWithUsername(self, username):

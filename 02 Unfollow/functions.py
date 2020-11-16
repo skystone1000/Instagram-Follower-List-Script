@@ -2,6 +2,7 @@ import instaBot
 import connection
 import time
 import os
+import pandas as pd
 from random import randint
 
 # INITIALIZATION ---------------------------
@@ -42,6 +43,7 @@ def fileToDb(fileName,tableName):
     for person in f:
         connection.addSingle(tableName,person)
         if (count % 50 == 0):
+            print("Count = {}".format(count))
             time.sleep(2)
         count = count + 1
     f.close()
@@ -58,73 +60,6 @@ def onComplete():
     bot.closeBrowser()
 
 ############################################################################################
-
-## COMPLETE
-def getUserFollowers(link):
-    """
-    tableName = userName.replace('.','')
-    tableName = "followers" + tableName.capitalize()
-    """
-    userName = linkToUsername(link)
-    tableName = "peopleToFollow"
-    
-    try:
-        connection.createTable(tableName)
-    except Exception as ex:
-        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-        message = template.format(type(ex).__name__, ex.args)
-        print(message)
-        
-    followers = bot.getUserFollowers(userName)
-
-    fileName = tableName + "Temp.txt"
-    listToFile(followers,fileName)    
-
-    print("Created file {}".format(fileName))
-    print("Writitng file to Db")
-    fileToDb(fileName,tableName)
-
-    # print("Adding to database")
-    time.sleep(2)
-    # connection.listFollowers(tableName,followers)
-    
-## COMPLETE
-def findMyEnemies(userName):
-    followers = ['Followers']
-    followers = bot.getUserFollowers(userName)
-    following = ['Following']
-    following = bot.getUserFollowing(userName)
-
-    print("\n\n")
-    print("nonFollowers : \n")
-    nonFollowers = 0
-    doNotFollowBack = ['Not Following Back']
-
-    f = open("unfollowlist.txt", "w")
-    for person in following:
-        if (person in followers):
-            continue
-        else:
-            # print(person)
-            f.write(person+"\n")
-            doNotFollowBack.append(person)
-            nonFollowers += 1 
-    f.close()
-
-    print("Total People Who Dont Follow back : {}".format(nonFollowers))
-    print("Adding to database")
-    try:
-        connection.createTable("myEnemies")
-    except Exception as ex:
-        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-        message = template.format(type(ex).__name__, ex.args)
-        print(message)
-
-    fileToDb("unfollowlist.txt","myEnemies")
-    if os.path.exists("unfollowlist.txt"):
-        os.remove("unfollowlist.txt")
-    else:
-        print("The file does not exist") 
 
 ## COMPLETE
 def followLimited(tableName):
@@ -153,7 +88,6 @@ def followLimited(tableName):
             # To remove once followed (Helpful in removing duplicate)    
             connection.addSingle("followedRaw",userUrl)
 
-
         if(val == 2):
             connection.addSingle("nameEmoji",userUrl)
             connection.delUser(tableName,userUrl)
@@ -168,12 +102,14 @@ def followLimited(tableName):
             # To remove once followed (Helpful in removing duplicate)    
             connection.addSingle("followedRaw",userUrl)
 
-
         if(val == 4):
+            print("Follow button Xpath did not match")
+
+        if(val == 5):
             print("Explicit reason")
         
-        if(followedCount > 25):
-            print("Completed Following 25 people")
+        if(followedCount > 30):
+            print("Completed Following 30 people")
             break
 
         if(i > MAX_PEOPLE_TO_FOLLOW):
@@ -182,45 +118,6 @@ def followLimited(tableName):
         
         print("People Followed now : {0}".format(followedCount))    
         print("================================================")
-
-
-# INCOMPLETE
-## Not able to delete all the followed users (Find reason:name blank,emoji in name)
-def deleteEarlierFollowed(tableName):
-    earlierFollowed = connection.getDataTable("followedUsers")
-    earlierFollowedList = []
-    earlierFollowedUname = []
-    # Uname = ''
-    loopcount = 0
-    for record in earlierFollowed:
-        earlierFollowedList.append(record[1])
-        Uname = linkToUsername(record[1])
-        earlierFollowedUname.append(Uname)
-
-    checkList = connection.getDataTable(tableName) 
-    deletedCount = 0
-    print("deletedCount = {}".format(deletedCount),end=", ")
-    for i in range(0,len(checkList)):
-        
-        # Match Link
-        if(checkList[i][1] in earlierFollowedList):
-            deletedCount = deletedCount + 1
-            print("deletedCount = {}".format(deletedCount))
-            id = checkList[i][0]
-            connection.delUserWithId(tableName,id)
-            print("{}".format(deletedCount),end=", ")
-            
-
-        ## Match to check username
-        checkUserName = linkToUsername(checkList[i][1])
-        print(checkUserName)
-        if(checkUserName in earlierFollowedUname):
-            deletedCount = deletedCount + 1
-            print("deletedCount = {}".format(deletedCount))
-            id = checkList[i][0]
-            connection.delUserWithId(tableName,id)
-            print("{}".format(deletedCount),end=", ")
-
 
 # INCOMPLETE
 def unfollowEnemiesLimited():
@@ -263,9 +160,85 @@ def unfollowEnemiesLimited():
         print("People UnFollowed now : {0}".format(unfollowedCount))    
         print("================================================")
 
+    
+## COMPLETE From Phantom Generated CSVs
+def findMyEnemies(userName):
+    followerDf = pd.read_csv("Followers my.csv")
+    followingDf = pd.read_csv("Following my.csv")
+    followers = followerDf['username'].tolist()
+    following = followingDf['username'].tolist()
+
+    f = open("whitelist.txt", "r")
+    whiteList = []
+    for person in f:
+        person = person[:-1]
+        whiteList.append(person)
+    # print(whiteList)
+
+    print("\n\n")
+    print("nonFollowers : \n")
+    nonFollowers = 0
+    doNotFollowBack = ['Not Following Back']
+
+    f = open("unfollowlist.txt", "w")
+    for person in following:
+        if (person in followers):
+            continue
+        elif(person in whiteList):
+            continue
+        else:
+            # print(person)
+            f.write(person+"\n")
+            doNotFollowBack.append(person)
+            nonFollowers += 1 
+    f.close()
+    
+    print("Total People Who Dont Follow back : {}".format(nonFollowers))
+    print("Adding to database")
+    try:
+        connection.createTable("myEnemies")
+    except Exception as ex:
+        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+        message = template.format(type(ex).__name__, ex.args)
+        print(message)
+
+    fileToDb("unfollowlist.txt","myEnemies")
+    if os.path.exists("unfollowlist.txt"):
+        os.remove("unfollowlist.txt")
+    else:
+        print("The file does not exist") 
+
+## COMPLETE
+def getUserFollowers(link):
+    """
+    tableName = userName.replace('.','')
+    tableName = "followers" + tableName.capitalize()
+    """
+    userName = linkToUsername(link)
+    tableName = "peopleToFollow"
+    
+    try:
+        connection.createTable(tableName)
+    except Exception as ex:
+        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+        message = template.format(type(ex).__name__, ex.args)
+        print(message)
+        
+    followers = bot.getUserFollowers(userName)
+
+    fileName = tableName + "Temp.txt"
+    listToFile(followers,fileName)    
+
+    print("Created file {}".format(fileName))
+    print("Writitng file to Db")
+    fileToDb(fileName,tableName)
+
+    # print("Adding to database")
+    time.sleep(2)
+    # connection.listFollowers(tableName,followers)
 
 ## Group Following
-def getGroups(link):
+def getUserFollowing(link):
     userName = linkToUsername(link)
     tableName = userName.replace('.','')
     tableName = "groups" + tableName.capitalize()
@@ -286,7 +259,85 @@ def getGroups(link):
     fileToDb(fileName,tableName)
 
 
+    # INCOMPLETE
+
+## Not able to delete all the followed users (Find reason:name blank,emoji in name)
+def deleteEarlierFollowed(tableName):
+    earlierFollowed = connection.getDataTable("followedUsers")
+    earlierFollowedList = []
+    earlierFollowedUname = []
+    # Uname = ''
+    loopcount = 0
+    for record in earlierFollowed:
+        earlierFollowedList.append(record[1])
+        Uname = linkToUsername(record[1])
+        earlierFollowedUname.append(Uname)
+
+    checkList = connection.getDataTable(tableName) 
+    deletedCount = 0
+    print("deletedCount = {}".format(deletedCount),end=", ")
+    for i in range(0,len(checkList)):
+        
+        # Match Link
+        if(checkList[i][1] in earlierFollowedList):
+            deletedCount = deletedCount + 1
+            print("deletedCount = {}".format(deletedCount))
+            id = checkList[i][0]
+            connection.delUserWithId(tableName,id)
+            print("{}".format(deletedCount),end=", ")
+            
+
+        ## Match to check username
+        checkUserName = linkToUsername(checkList[i][1])
+        print(checkUserName)
+        if(checkUserName in earlierFollowedUname):
+            deletedCount = deletedCount + 1
+            print("deletedCount = {}".format(deletedCount))
+            id = checkList[i][0]
+            connection.delUserWithId(tableName,id)
+            print("{}".format(deletedCount),end=", ")
+
+
 ####################################################
+
+## COMPLETE
+def findMyEnemiesOld(userName):
+    followers = ['Followers']
+    followers = bot.getUserFollowers(userName)
+    following = ['Following']
+    following = bot.getUserFollowing(userName)
+
+    print("\n\n")
+    print("nonFollowers : \n")
+    nonFollowers = 0
+    doNotFollowBack = ['Not Following Back']
+
+    f = open("unfollowlist.txt", "w")
+    for person in following:
+        if (person in followers):
+            continue
+        else:
+            # print(person)
+            f.write(person+"\n")
+            doNotFollowBack.append(person)
+            nonFollowers += 1 
+    f.close()
+
+    print("Total People Who Dont Follow back : {}".format(nonFollowers))
+    print("Adding to database")
+    try:
+        connection.createTable("myEnemies")
+    except Exception as ex:
+        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+        message = template.format(type(ex).__name__, ex.args)
+        print(message)
+
+    fileToDb("unfollowlist.txt","myEnemies")
+    if os.path.exists("unfollowlist.txt"):
+        os.remove("unfollowlist.txt")
+    else:
+        print("The file does not exist") 
+
 
 def followFromFile():
     followedCount = 0

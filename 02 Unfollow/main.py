@@ -7,14 +7,14 @@ currUser = getUser()
 
 if(currUser == "Coding"):
     # functions.followLimited("peopleToFollow")
-    # functions.findMyEnemies('skystone1000')
     functions.unfollowEnemiesLimited()
+    # functions.findMyEnemies('skystone1000')
 elif(currUser == "Photography"):
-    print("follow")
-    functions.followLimited("peopleToFollow")
+    # functions.followLimited("peopleToFollow")
+    functions.unfollowEnemiesLimited()
     # functions.findMyEnemies('_still.hungry_')
     # functions.getUserFollowers('https://www.instagram.com/nanded_love/')
-    # functions.unfollowEnemiesLimited()
+    # functions.fileToDb('ans.txt','peopleToFollow')
 
 
 functions.onComplete()
