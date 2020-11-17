@@ -190,8 +190,9 @@ class InstagramBot():
 
     #### Check complete (Used in unfollow enemies limited)
     def unfollowWithUsername(self, username):
-        # self.browser.get('https://www.instagram.com/' + username + '/')
-        self.browser.get(username)        
+        self.browser.get('https://www.instagram.com/' + username + '/')
+        # print(username)
+        # self.browser.get(username)        
 
         try:
             followButton = self.browser.find_element_by_css_selector('button')

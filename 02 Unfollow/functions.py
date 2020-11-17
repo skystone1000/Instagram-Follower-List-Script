@@ -130,23 +130,23 @@ def unfollowEnemiesLimited():
         timeToSleep = randint(20, 30)
         time.sleep(timeToSleep)
 
-        userUrl = peopleToUnfollow[i][1]
-        userName = linkToUsername(userUrl)
-        # linkToUsername BROKEN
-        val = bot.unfollowWithUsername(userUrl)
+        userName = peopleToUnfollow[i][1]
+        # userUrl = "https://www.instagram.com/" + userName + "/"
+
+        val = bot.unfollowWithUsername(userName)
         # print(val)     
 
         if(val == 0):
-            connection.delUser(tableName,userUrl)
+            connection.delUser(tableName,userName)
             print("Not Following")
 
         if(val == 1):
-            connection.delUser(tableName,userUrl)
+            connection.delUser(tableName,userName)
             print("Unfollowed {}".format(userName))
             unfollowedCount = unfollowedCount + 1
 
         if(val == 2):
-            connection.delUser(tableName,userUrl)
+            connection.delUser(tableName,userName)
             print("UserName Does not exist")
 
         if(unfollowedCount > 30):
