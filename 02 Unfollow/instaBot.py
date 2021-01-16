@@ -74,7 +74,7 @@ class InstagramBot():
     #### Check complete (Used in follow Limited)
     def followWithLink(self, link):
         self.browser.get(link)
-        time.sleep(2)
+        time.sleep(8)
            
         ############## Get Name
         ## TO DO  -- when Name field is blank || Name emoji ##
@@ -166,7 +166,7 @@ class InstagramBot():
             if (followButton.text != 'Message' and followButton.text != 'Requested' and followButton.text != 'Follow Back' ):
                 followButton.click()
                 connection.addFollowed(name,url,userName,posts,followers,following,response)
-                time.sleep(2)
+                time.sleep(8)
                 return 1
             else:
                 print("You are already following this user")

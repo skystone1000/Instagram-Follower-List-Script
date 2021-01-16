@@ -10,8 +10,8 @@ if(currUser == "Coding"):
     functions.unfollowEnemiesLimited()
     # functions.findMyEnemies('skystone1000')
 elif(currUser == "Photography"):
-    # functions.followLimited("peopleToFollow")
-    functions.unfollowEnemiesLimited()
+    functions.followLimited("peopleToFollow")
+    # functions.unfollowEnemiesLimited()
     # functions.findMyEnemies('_still.hungry_')
     # functions.getUserFollowers('https://www.instagram.com/nanded_love/')
     # functions.fileToDb('ans.txt','peopleToFollow')
@@ -37,6 +37,9 @@ functions.onComplete()
 
 # functions.fileToDb("unfollowlist.txt","myEnemies")
 # functions.fileToDb("sggs.txt","sggsmemes")
+
+# SCRIPT Command crontab
+# 49 * * * * export DISPLAY=:0; /opt/lampp/htdocs/github/Instagram-Follower-List-Script/start.sh
 
 
 ######################################################################################3

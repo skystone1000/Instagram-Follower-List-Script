@@ -68,7 +68,7 @@ def followLimited(tableName):
     peopleToFollow = connection.getDataTable(tableName)
     for i in range(0,len(peopleToFollow)):
         print("Loop Count = {}".format(i))
-        timeToSleep = randint(4, 8)
+        timeToSleep = randint(10, 20)
         time.sleep(timeToSleep)
 
         userUrl = peopleToFollow[i][1]
@@ -108,8 +108,8 @@ def followLimited(tableName):
         if(val == 5):
             print("Explicit reason")
         
-        if(followedCount > 30):
-            print("Completed Following 30 people")
+        if(followedCount > 25):
+            print("Completed Following 25 people")
             break
 
         if(i > MAX_PEOPLE_TO_FOLLOW):
