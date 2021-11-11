@@ -143,4 +143,5 @@ chromedriver
 
 # Log files
 Logs/
-
+Followers my.csv
+Following my.csv

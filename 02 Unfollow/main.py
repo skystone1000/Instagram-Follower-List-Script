@@ -1,8 +1,12 @@
+import time
 from config import decideUser,getUser
 decideUser()
 import functions
 
-
+t = time.localtime()
+current_time = time.strftime("%H:%M:%S", t)
+print("Time :")
+print(current_time)
 currUser = getUser()
 
 if(currUser == "Coding"):
@@ -10,8 +14,8 @@ if(currUser == "Coding"):
     functions.unfollowEnemiesLimited()
     # functions.findMyEnemies('skystone1000')
 elif(currUser == "Photography"):
-    functions.followLimited("peopleToFollow")
-    # functions.unfollowEnemiesLimited()
+    # functions.followLimited("peopleToFollow")
+    functions.unfollowEnemiesLimited()
     # functions.findMyEnemies('_still.hungry_')
     # functions.getUserFollowers('https://www.instagram.com/nanded_love/')
     # functions.fileToDb('ans.txt','peopleToFollow')
